@@ -1,9 +1,11 @@
 package com.diplom.pa.ui.`object`
 
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.diplom.pa.R
+import com.diplom.pa.ui.SettingsFragment
 import com.diplom.pa.ui.WorkFragment
 import com.mikepenz.materialdrawer.AccountHeader
 import com.mikepenz.materialdrawer.AccountHeaderBuilder
@@ -71,7 +73,7 @@ class AppDrawer(private val mainActivity: AppCompatActivity, private val mToolba
                     when (position) {
                         9 -> mainActivity.supportFragmentManager.beginTransaction()
                             .addToBackStack(null)
-                            .replace(R.id.dataContainer, WorkFragment()).commit()
+                            .replace(R.id.dataContainer, SettingsFragment()).commit()
                     }
                     return false
                 }

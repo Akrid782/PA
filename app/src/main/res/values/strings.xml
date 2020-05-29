@@ -1,6 +1,17 @@
 <resources>
+    <!-- base -->
     <string name="app_name">pa</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- setting fragment -->
+    <string name="settings_default_fullName">Иванов Николай</string>
+    <string name="settings_default_status">В сети</string>
+    <string name="settings_default_userName">ivanov782</string>
+    <string name="settings_default_number_phone">+7 (981) 959–45–68</string>
+    <string name="settings_textView_account">Аккаунт</string>
+    <string name="settings_label_number_phone">Нажмите, чтобы изменить номер телефона</string>
+    <string name="settings_label_userName">Имя пользователя</string>
+    <string name="settings_default_about">О себе</string>
+    <string name="settings_label_about">Напишите немного о себе</string>
 </resources>
