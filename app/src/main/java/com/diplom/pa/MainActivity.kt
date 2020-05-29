@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import com.diplom.pa.databinding.ActivityMainBinding
+import com.diplom.pa.ui.WorkFragment
 import com.mikepenz.materialdrawer.AccountHeader
 import com.mikepenz.materialdrawer.AccountHeaderBuilder
 import com.mikepenz.materialdrawer.Drawer
@@ -40,6 +41,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun initFunc() {
         setSupportActionBar(mToolbar)
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.dataContainer, WorkFragment()).commit()
         createHeader()
         createDrawer()
     }
@@ -57,50 +60,54 @@ class MainActivity : AppCompatActivity() {
 
     private fun createDrawer() {
         mDrawer = DrawerBuilder()
-            .withActivity(this )
+            .withActivity(this)
             .withToolbar(mToolbar)
             .withActionBarDrawerToggle(true)
             .withSelectedItem(-1)
             .withAccountHeader(mHeader)
             .addDrawerItems(
-                PrimaryDrawerItem().withIdentifier(100)
+                PrimaryDrawerItem().withIdentifier(101)
                     .withIconTintingEnabled(true)
                     .withName("Расписание работ")
                     .withSelectable(false)
                     .withIcon(R.drawable.ic_work),
                 DividerDrawerItem(),
-                PrimaryDrawerItem().withIdentifier(101)
+                PrimaryDrawerItem().withIdentifier(103)
                     .withIconTintingEnabled(true)
                     .withName("Чат")
                     .withSelectable(false)
                     .withIcon(R.drawable.ic_chat),
                 DividerDrawerItem(),
-                PrimaryDrawerItem().withIdentifier(102)
+                PrimaryDrawerItem().withIdentifier(105)
                     .withIconTintingEnabled(true)
                     .withName("Замерочный лист")
                     .withSelectable(false)
                     .withIcon(R.drawable.ic_page),
                 DividerDrawerItem(),
-                PrimaryDrawerItem().withIdentifier(103)
+                PrimaryDrawerItem().withIdentifier(107)
                     .withIconTintingEnabled(true)
                     .withName("Контакты")
                     .withSelectable(false)
                     .withIcon(R.drawable.ic_contact),
                 DividerDrawerItem(),
-                PrimaryDrawerItem().withIdentifier(104)
+                PrimaryDrawerItem().withIdentifier(109)
                     .withIconTintingEnabled(true)
                     .withName("Настройки")
                     .withSelectable(false)
                     .withIcon(R.drawable.ic_settings),
                 DividerDrawerItem()
             )
-            .withOnDrawerItemClickListener(object:Drawer.OnDrawerItemClickListener{
+            .withOnDrawerItemClickListener(object : Drawer.OnDrawerItemClickListener {
                 override fun onItemClick(
                     view: View?,
                     position: Int,
                     drawerItem: IDrawerItem<*>
                 ): Boolean {
-
+                    when (position) {
+                        9 -> supportFragmentManager.beginTransaction()
+                            .addToBackStack(null)
+                            .replace(R.id.dataContainer, WorkFragment()).commit()
+                    }
                     return false
                 }
             })
