@@ -3,6 +3,7 @@ package com.diplom.pa.ui.`object`
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.drawerlayout.widget.DrawerLayout
 import com.diplom.pa.R
 import com.diplom.pa.ui.fragments.SettingsFragment
 import com.diplom.pa.utility.replaceFragment
@@ -18,10 +19,30 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem
 class AppDrawer(private val mainActivity: AppCompatActivity, private val mToolbar: Toolbar) {
     private lateinit var mDrawer: Drawer
     private lateinit var mHeader: AccountHeader
+    private lateinit var mDrawerLayout: DrawerLayout
 
     fun create() {
         createHeader()
         createDrawer()
+        mDrawerLayout = mDrawer.drawerLayout
+    }
+
+    fun disableDrawer() {
+        mDrawer.actionBarDrawerToggle?.isDrawerIndicatorEnabled = false
+        mainActivity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+        mToolbar.setNavigationOnClickListener{
+            mainActivity.supportFragmentManager.popBackStack()
+        }
+    }
+
+    fun enableDrawer() {
+        mainActivity.supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        mDrawer.actionBarDrawerToggle?.isDrawerIndicatorEnabled = true
+        mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+        mToolbar.setNavigationOnClickListener{
+            mDrawer.openDrawer()
+        }
     }
 
     private fun createDrawer() {
