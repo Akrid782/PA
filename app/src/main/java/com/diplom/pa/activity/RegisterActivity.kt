@@ -19,6 +19,6 @@ class RegisterActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        replaceFragment(EnterFragment())
+        replaceFragment(EnterFragment(), false)
     }
 }
