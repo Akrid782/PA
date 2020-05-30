@@ -1,17 +1,16 @@
 package com.diplom.pa
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.diplom.pa.activity.RegisterActivity
 import com.diplom.pa.databinding.ActivityMainBinding
-import com.diplom.pa.ui.fragments.WorkFragment
 import com.diplom.pa.ui.`object`.AppDrawer
+import com.diplom.pa.ui.fragments.WorkFragment
 import com.diplom.pa.utility.AUTH
+import com.diplom.pa.utility.initFirebase
 import com.diplom.pa.utility.replaceActivity
 import com.diplom.pa.utility.replaceFragment
-import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
 
@@ -34,15 +33,15 @@ class MainActivity : AppCompatActivity() {
     private fun initFields() {
         mToolbar = mBinding.mainToolbar
         mAppDrawer = AppDrawer(this, mToolbar)
-        AUTH = FirebaseAuth.getInstance()
+        initFirebase()
     }
 
     private fun initFunc() {
-        if (AUTH.currentUser!=null) {
+        if (AUTH.currentUser != null) {
             setSupportActionBar(mToolbar)
             mAppDrawer.create()
             replaceFragment(WorkFragment(), false)
-        }else{
+        } else {
             replaceActivity(RegisterActivity())
         }
     }
