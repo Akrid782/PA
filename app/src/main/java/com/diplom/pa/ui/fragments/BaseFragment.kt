@@ -1,4 +1,4 @@
-package com.diplom.pa.ui
+package com.diplom.pa.ui.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

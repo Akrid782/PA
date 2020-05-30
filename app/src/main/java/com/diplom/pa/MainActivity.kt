@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.diplom.pa.databinding.ActivityMainBinding
-import com.diplom.pa.ui.WorkFragment
+import com.diplom.pa.ui.fragments.WorkFragment
 import com.diplom.pa.ui.`object`.AppDrawer
 
 class MainActivity : AppCompatActivity() {
@@ -34,6 +34,8 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(mToolbar)
         mAppDrawer.create()
         supportFragmentManager.beginTransaction()
-            .replace(R.id.dataContainer, WorkFragment()).commit()
+            .replace(R.id.dataContainer,
+                WorkFragment()
+            ).commit()
     }
 }
