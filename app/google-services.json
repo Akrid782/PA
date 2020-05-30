@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "752788402908",
+    "firebase_url": "https://pa-diplom.firebaseio.com",
+    "project_id": "pa-diplom",
+    "storage_bucket": "pa-diplom.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:752788402908:android:ba4d7b42e1049fe4a1fa19",
+        "android_client_info": {
+          "package_name": "com.diplom.pa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "752788402908-9gde3u57l67f9kv4nhisbm3fts76trlc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqYhH1uUsvgZ9ls-Owuy8cXOIlTo4Gy4A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "752788402908-9gde3u57l67f9kv4nhisbm3fts76trlc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

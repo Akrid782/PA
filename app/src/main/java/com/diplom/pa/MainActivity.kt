@@ -1,11 +1,15 @@
 package com.diplom.pa
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.diplom.pa.activity.RegisterActivity
 import com.diplom.pa.databinding.ActivityMainBinding
 import com.diplom.pa.ui.fragments.WorkFragment
 import com.diplom.pa.ui.`object`.AppDrawer
+import com.diplom.pa.utility.replaceActivity
+import com.diplom.pa.utility.replaceFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,11 +35,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initFunc() {
-        setSupportActionBar(mToolbar)
-        mAppDrawer.create()
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.dataContainer,
-                WorkFragment()
-            ).commit()
+        if (false) {
+            setSupportActionBar(mToolbar)
+            mAppDrawer.create()
+            replaceFragment(WorkFragment())
+        }else{
+            replaceActivity(RegisterActivity())
+        }
     }
 }
