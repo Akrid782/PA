@@ -1,15 +1,15 @@
 package com.diplom.pa.ui.fragments
 
+import android.app.Activity.RESULT_OK
+import android.content.Intent
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import com.diplom.pa.MainActivity
 import com.diplom.pa.R
 import com.diplom.pa.activity.RegisterActivity
-import com.diplom.pa.utility.AUTH
-import com.diplom.pa.utility.USER
-import com.diplom.pa.utility.replaceActivity
-import com.diplom.pa.utility.replaceFragment
+import com.diplom.pa.utility.*
+import com.theartofdev.edmodo.cropper.CropImage
+import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.fragment_settings.*
 
 class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
@@ -28,6 +28,15 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
         settings_userName.text = USER.username
         settings_btn_change_about.setOnClickListener { replaceFragment(ChangeBioFragment()) }
         settings_btn_change_userName.setOnClickListener { replaceFragment(ChangeUsernameFragment()) }
+        settings_btn_change_photo.setOnClickListener { changePhotoUser() }
+    }
+
+    private fun changePhotoUser() {
+        CropImage.activity()
+            .setAspectRatio(1, 1)
+            .setRequestedSize(600, 600)
+            .setCropShape(CropImageView.CropShape.OVAL)
+            .start(APP_ACTIVITY)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -41,7 +50,7 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
         when (item.itemId) {
             R.id.settings_menu_exit -> {
                 AUTH.signOut()
-                (activity as MainActivity).replaceActivity(RegisterActivity())
+                APP_ACTIVITY.replaceActivity(RegisterActivity())
             }
             R.id.settings_menu_change_name -> replaceFragment(ChangeNameFragment())
         }

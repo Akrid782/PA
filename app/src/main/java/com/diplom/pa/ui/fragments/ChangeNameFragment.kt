@@ -1,11 +1,5 @@
 package com.diplom.pa.ui.fragments
 
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.widget.EditText
-import androidx.fragment.app.Fragment
-import com.diplom.pa.MainActivity
 import com.diplom.pa.R
 import com.diplom.pa.utility.*
 import kotlinx.android.synthetic.main.fragment_change_name.*
@@ -30,7 +24,7 @@ class ChangeNameFragment : BaseChangeFragment(R.layout.fragment_change_name) {
             showToast("Имя не может быть пустым")
         } else {
             val fullName = "$firstName $lastName"
-            REF_DATABASE_ROOT.child(NODE_USERS).child(UID).child(CHILD_FULLNAME)
+            REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_ID).child(CHILD_FULLNAME)
                 .setValue(fullName).addOnCompleteListener {
                     if (it.isSuccessful) {
                         showToast("Данные обновленны")

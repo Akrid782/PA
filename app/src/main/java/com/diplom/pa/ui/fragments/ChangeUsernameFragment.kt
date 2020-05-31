@@ -1,9 +1,5 @@
 package com.diplom.pa.ui.fragments
 
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import com.diplom.pa.MainActivity
 import com.diplom.pa.R
 import com.diplom.pa.utility.*
 import kotlinx.android.synthetic.main.fragment_change_username.*
@@ -28,7 +24,7 @@ class ChangeUsernameFragment : BaseChangeFragment(R.layout.fragment_change_usern
     }
 
     private fun changeUsername() {
-        REF_DATABASE_ROOT.child(NODE_USERNAMES).child(mUsername).setValue(UID)
+        REF_DATABASE_ROOT.child(NODE_USERNAMES).child(mUsername).setValue(CURRENT_ID)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
                     updateCurrentUsername()
@@ -37,7 +33,7 @@ class ChangeUsernameFragment : BaseChangeFragment(R.layout.fragment_change_usern
     }
 
     private fun updateCurrentUsername() {
-        REF_DATABASE_ROOT.child(NODE_USERS).child(UID).child(CHILD_USERNAME).setValue(mUsername)
+        REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_ID).child(CHILD_USERNAME).setValue(mUsername)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
                     showToast("Данные обновленны")

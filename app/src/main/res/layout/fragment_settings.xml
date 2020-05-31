@@ -163,13 +163,12 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/settings_prof"
+        android:id="@+id/settings_btn_change_photo"
         android:layout_width="@dimen/settings_profile_image_width"
         android:layout_height="@dimen/settings_profile_image_height"
         android:layout_marginStart="@dimen/margin_16dp"
         android:layout_marginEnd="@dimen/margin_16dp"
         android:src="@drawable/ic_camera_white"
-        app:civ_border_width="@dimen/settings_profile_image_border"
         app:civ_circle_background_color="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="@+id/settings_header_block"
         app:layout_constraintEnd_toEndOf="parent"
