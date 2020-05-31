@@ -8,6 +8,7 @@ import com.diplom.pa.R
 import com.diplom.pa.activity.RegisterActivity
 import com.diplom.pa.utility.AUTH
 import com.diplom.pa.utility.replaceActivity
+import com.diplom.pa.utility.replaceFragment
 
 class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
 
@@ -29,6 +30,7 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
                 AUTH.signOut()
                 (activity as MainActivity).replaceActivity(RegisterActivity())
             }
+            R.id.settings_menu_change_name -> replaceFragment(ChangeNameFragment())
         }
         return true
     }
