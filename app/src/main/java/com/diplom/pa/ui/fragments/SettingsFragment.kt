@@ -1,7 +1,6 @@
 package com.diplom.pa.ui.fragments
 
 import android.app.Activity
-import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.view.Menu
 import android.view.MenuInflater
@@ -9,7 +8,6 @@ import android.view.MenuItem
 import com.diplom.pa.R
 import com.diplom.pa.activity.RegisterActivity
 import com.diplom.pa.utility.*
-import com.squareup.picasso.Picasso
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.fragment_settings.*
@@ -30,7 +28,9 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
         settings_userName.text = USER.username
         settings_btn_change_about.setOnClickListener { replaceFragment(ChangeBioFragment()) }
         settings_btn_change_userName.setOnClickListener { replaceFragment(ChangeUsernameFragment()) }
+        settings_btn_change_number_phone.setOnClickListener { replaceFragment(ChangePhoneFragment()) }
         settings_btn_change_photo.setOnClickListener { changePhotoUser() }
+        settings_profile_image.downloadAndSetImage(USER.photoUrl)
     }
 
     private fun changePhotoUser() {
@@ -67,20 +67,14 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
             val uri = CropImage.getActivityResult(data).uri
             val path = REF_STORAGE_ROOT.child(FOLDER_PROFILE_IMAGE)
                 .child(CURRENT_ID)
-            path.putFile(uri).addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    path.downloadUrl.addOnCompleteListener { task2 ->
-                        if (task2.isSuccessful) {
-                            val photoUrl = task2.result.toString()
-                            REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_ID)
-                                .child(CHILD_PHOTO_URL).setValue(photoUrl)
-                                .addOnCompleteListener { task3 ->
-                                    if (task3.isSuccessful  ) {
-                                        settings_profile_image.downloadAndSetImage(photoUrl)
-                                        showToast("Данные обновленны")
-                                    }
-                                }
-                        }
+
+            putImageToStorage(uri, path) {
+                getUrlFromStorage(path) {
+                    putUrlToDatabase(it) {
+                        settings_profile_image.downloadAndSetImage(it)
+                        showToast("Данные обновленны")
+                        USER.photoUrl = it
+                        APP_ACTIVITY.mAppDrawer.updateHeader()
                     }
                 }
             }
