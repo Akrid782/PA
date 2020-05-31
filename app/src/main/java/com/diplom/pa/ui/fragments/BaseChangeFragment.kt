@@ -4,9 +4,9 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
-import com.diplom.pa.MainActivity
 import com.diplom.pa.R
 import com.diplom.pa.utility.APP_ACTIVITY
+import com.diplom.pa.utility.hideKeyboard
 
 open class BaseChangeFragment(layout: Int): Fragment(layout) {
 
@@ -14,11 +14,7 @@ open class BaseChangeFragment(layout: Int): Fragment(layout) {
         super.onStart()
         setHasOptionsMenu(true)
         APP_ACTIVITY.mAppDrawer.disableDrawer()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        APP_ACTIVITY.hideKeyboard()
+        hideKeyboard()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
