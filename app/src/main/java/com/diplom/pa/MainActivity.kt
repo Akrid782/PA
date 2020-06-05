@@ -1,13 +1,10 @@
 package com.diplom.pa
 
-import android.content.Context
 import android.os.Bundle
-import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.diplom.pa.activity.RegisterActivity
 import com.diplom.pa.databinding.ActivityMainBinding
-import com.diplom.pa.models.User
 import com.diplom.pa.ui.`object`.AppDrawer
 import com.diplom.pa.ui.fragments.WorkFragment
 import com.diplom.pa.utility.*
@@ -24,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(mBinding.root)
         APP_ACTIVITY = this
         initFirebase()
-        initUser{
+        initUser {
             initFields()
             initFunc()
         }

@@ -12,4 +12,7 @@
     <dimen name="settings_profile_image_border">1dp</dimen>
     <dimen name="settings_profile_image_width">55dp</dimen>
     <dimen name="settings_profile_image_height">55dp</dimen>
+    <dimen name="margin_32dp">32dp</dimen>
+    <dimen name="margin_64dp">64dp</dimen>
+    <dimen name="radius_5dp">5dp</dimen>
 </resources>

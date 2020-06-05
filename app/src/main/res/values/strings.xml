@@ -16,4 +16,12 @@
     <string name="settings_label_about">Напишите немного о себе</string>
     <string name="settings_menu_change_name">Изменить имя</string>
     <string name="settings_menu_exit">Выход</string>
+
+    <!-- enter fragment -->
+    <string name="register_image_logo_description">Логотип компании</string>
+    <string name="register_label_enter_email">Логин</string>
+    <string name="register_hint_enter_email">E-mail</string>
+    <string name="register_hint_enter_password">Пароль</string>
+    <string name="register_label_enter_password">Пароль</string>
+    <string name="register_btn_enter">Вход</string>
 </resources>
