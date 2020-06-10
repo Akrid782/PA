@@ -14,7 +14,7 @@ fun checkPermission(permission: String): Boolean {
         && ContextCompat.checkSelfPermission(
             APP_ACTIVITY,
             permission
-        ) != PackageManager.PERMISSION_DENIED
+        ) != PackageManager.PERMISSION_GRANTED
     ) {
         ActivityCompat.requestPermissions(APP_ACTIVITY, arrayOf(permission), PERMISSION_REQUEST)
         false

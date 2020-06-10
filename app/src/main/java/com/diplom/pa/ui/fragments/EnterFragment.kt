@@ -1,6 +1,7 @@
 package com.diplom.pa.ui.fragments
 
 import android.app.Activity
+import android.content.Intent
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.diplom.pa.MainActivity
@@ -50,19 +51,27 @@ class EnterFragment : Fragment(R.layout.fragment_enter) {
         AUTH.signInWithEmailAndPassword(mEmail, mPassword)
             .addOnCompleteListener(Activity()) { task ->
                 if (task.isSuccessful) {
-                    val uid = AUTH.currentUser?.uid.toString()
-                    val dateMap = mutableMapOf<String, Any>()
-                    dateMap[CHILD_ID] = uid
-                    dateMap[CHILD_EMAIL] = mEmail
-                    dateMap[CHILD_USERNAME] = "Иванов Николай"
+                    CURRENT_ID = AUTH.currentUser?.uid.toString()
+                    initUser{
+                        val uid = AUTH.currentUser?.uid.toString()
+                        val username = USER.fullname
+                        val phone = USER.phone
+                        val dateMap = mutableMapOf<String, Any>()
 
-                    REF_DATABASE_ROOT.child(NODE_USERS).child(uid).updateChildren(dateMap)
-                        .addOnCompleteListener {
-                            if (it.isSuccessful) {
-                                showToast("Добро пожаловать")
-                                (activity as RegisterActivity).replaceActivity(MainActivity())
-                            } else showToast(it.exception?.message.toString())
-                        }
+                        dateMap[CHILD_ID] = uid
+                        dateMap[CHILD_EMAIL] = mEmail
+                        dateMap[CHILD_USERNAME] = username
+
+                        REF_DATABASE_ROOT.child(NODE_PHONES).child(phone).setValue(uid)
+                            .addOnFailureListener {}
+                            .addOnSuccessListener {
+                                REF_DATABASE_ROOT.child(NODE_USERS).child(uid).updateChildren(dateMap)
+                                    .addOnSuccessListener {
+                                        showToast("Добро пожаловать")
+                                        (activity as RegisterActivity).replaceActivity(MainActivity())
+                                    }
+                            }
+                    }
                 } else showToast(task.exception?.message.toString())
             }
     }

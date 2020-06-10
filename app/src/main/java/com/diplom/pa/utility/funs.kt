@@ -8,14 +8,14 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.diplom.pa.R
+import com.diplom.pa.models.User
 import com.squareup.picasso.Picasso
-import de.hdodenhof.circleimageview.CircleImageView
 
 fun showToast(message: String) {
     Toast.makeText(APP_ACTIVITY, message, Toast.LENGTH_LONG).show()
 }
 
-fun AppCompatActivity.replaceActivity(activity: AppCompatActivity) {
+fun AppCompatActivity.replaceActivity(activity: AppCompatActivity, dataUser: User = User()) {
     val intent = Intent(this, activity::class.java)
     startActivity(intent)
     this.finish()

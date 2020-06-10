@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.diplom.pa.MainActivity
 import com.diplom.pa.utility.APP_ACTIVITY
+import com.diplom.pa.utility.showToast
 
 open class BaseFragment(private val layout:Int) : Fragment(layout) {
 

@@ -1,6 +1,6 @@
 package com.diplom.pa.models
 
-data class User(
+data class CommonModel (
     var id: String = "",
     var username: String = "",
     var bio: String = "",
