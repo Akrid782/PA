@@ -14,7 +14,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:src="@drawable/ic_launcher_foreground"
-        android:background="@color/nero"/>
+        app:civ_circle_background_color="@color/nero"/>
 
     <TextView
         android:id="@+id/contact_fullname"

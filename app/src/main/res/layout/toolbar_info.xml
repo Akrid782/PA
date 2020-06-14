@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="@color/eclipse">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/toolbar_image"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:src="@drawable/ic_launcher_foreground"
+        app:civ_circle_background_color="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@id/contact_fullname"
+        style="@style/normalText"
+        android:text="Full user name"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toEndOf="@id/toolbar_image"
+        app:layout_constraintTop_toTopOf="@+id/toolbar_image" />
+
+    <TextView
+        style="@style/smallText"
+        android:text="Status"
+        android:textColor="@color/summerSky"
+        app:layout_constraintStart_toEndOf="@id/toolbar_image"
+        app:layout_constraintTop_toBottomOf="@+id/contact_fullname" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

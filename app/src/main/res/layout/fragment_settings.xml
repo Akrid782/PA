@@ -10,7 +10,7 @@
         android:id="@+id/settings_header_block"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/eclipse"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -23,7 +23,7 @@
             android:src="@drawable/ic_launcher_foreground"
             app:civ_border_color="#FF000000"
             app:civ_border_width="@dimen/settings_profile_image_border"
-            app:civ_circle_background_color="@color/nero"
+            app:civ_circle_background_color="@color/alizarin"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
