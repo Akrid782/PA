@@ -10,14 +10,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.diplom.pa.R
 import com.diplom.pa.models.CommonModel
-import com.diplom.pa.models.User
+import com.diplom.pa.models.UserModel
 import com.squareup.picasso.Picasso
+import java.text.SimpleDateFormat
+import java.util.*
 
 fun showToast(message: String) {
     Toast.makeText(APP_ACTIVITY, message, Toast.LENGTH_LONG).show()
 }
 
-fun AppCompatActivity.replaceActivity(activity: AppCompatActivity, dataUser: User = User()) {
+fun AppCompatActivity.replaceActivity(activity: AppCompatActivity, dataUserModel: UserModel = UserModel()) {
     val intent = Intent(this, activity::class.java)
     startActivity(intent)
     this.finish()
@@ -64,8 +66,7 @@ fun ImageView.downloadAndSetImage(url: String) {
 
 fun initContacts() {
     if (checkPermission(READ_CONTACTS)) {
-        val arrayContacts = arrayListOf<CommonModel>()
-
+        var arrayContacts = arrayListOf<CommonModel>()
         val cursor = APP_ACTIVITY.contentResolver.query(
             ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
             null,
@@ -90,3 +91,8 @@ fun initContacts() {
     }
 }
 
+fun String.asTime(): CharSequence? {
+    val time = Date(this.toLong())
+    val timeFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+    return timeFormat.format(time)
+}

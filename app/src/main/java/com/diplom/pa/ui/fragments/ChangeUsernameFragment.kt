@@ -11,7 +11,7 @@ class ChangeUsernameFragment : BaseChangeFragment(R.layout.fragment_change_usern
 
     override fun onResume() {
         super.onResume()
-        settings_change_userName.setText(USER.username)
+        settings_change_userName.setText(USERModel.username)
     }
 
     override fun change() {
@@ -43,10 +43,10 @@ class ChangeUsernameFragment : BaseChangeFragment(R.layout.fragment_change_usern
     }
 
     private fun deleteOldUsername() {
-        REF_DATABASE_ROOT.child(NODE_USERNAMES).child(USER.username).removeValue()
+        REF_DATABASE_ROOT.child(NODE_USERNAMES).child(USERModel.username).removeValue()
             .addOnCompleteListener {
                 if (it.isSuccessful) {
-                    USER.username = mUsername
+                    USERModel.username = mUsername
                     fragmentManager?.popBackStack()
                 }
             }

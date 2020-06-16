@@ -4,8 +4,6 @@ import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.view.View
 import android.widget.ImageView
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import com.diplom.pa.R
 import com.diplom.pa.ui.fragments.ContactsFragment
@@ -21,8 +19,6 @@ import com.mikepenz.materialdrawer.model.ProfileDrawerItem
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem
 import com.mikepenz.materialdrawer.util.AbstractDrawerImageLoader
 import com.mikepenz.materialdrawer.util.DrawerImageLoader
-import kotlinx.android.synthetic.main.activity_main.*
-import java.text.FieldPosition
 
 class AppDrawer( ) {
     private lateinit var mDrawer: Drawer
@@ -116,9 +112,9 @@ class AppDrawer( ) {
 
     private fun createHeader() {
         mCurrentProfile = ProfileDrawerItem()
-            .withName(USER.fullname)
-            .withEmail(USER.phone)
-            .withIcon(USER.photoUrl)
+            .withName(USERModel.fullname)
+            .withEmail(USERModel.phone)
+            .withIcon(USERModel.photoUrl)
             .withIdentifier(200)
         mHeader = AccountHeaderBuilder()
             .withActivity(APP_ACTIVITY)
@@ -131,9 +127,9 @@ class AppDrawer( ) {
 
     fun updateHeader() {
         mCurrentProfile
-            .withName(USER.fullname)
-            .withEmail(USER.phone)
-            .withIcon(USER.photoUrl)
+            .withName(USERModel.fullname)
+            .withEmail(USERModel.phone)
+            .withIcon(USERModel.photoUrl)
 
         mHeader.updateProfile(mCurrentProfile)
     }

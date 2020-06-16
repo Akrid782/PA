@@ -9,7 +9,7 @@ class ChangeBioFragment : BaseChangeFragment(R.layout.fragment_change_bio) {
 
     override fun onResume() {
         super.onResume()
-        settings_change_bio.setText(USER.bio)
+        settings_change_bio.setText(USERModel.bio)
     }
 
     override fun change() {
@@ -18,7 +18,7 @@ class ChangeBioFragment : BaseChangeFragment(R.layout.fragment_change_bio) {
             .setValue(bio).addOnCompleteListener {
                 if (it.isSuccessful) {
                     showToast("Данные обновленны")
-                    USER.bio = bio
+                    USERModel.bio = bio
                     fragmentManager?.popBackStack()
                 }
             }

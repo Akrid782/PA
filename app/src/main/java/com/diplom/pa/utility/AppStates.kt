@@ -10,7 +10,7 @@ enum class AppStates(val state: String) {
             if (AUTH.currentUser!=null) {
                 REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_ID).child(CHILD_STATE)
                     .setValue(appStates.state)
-                    .addOnSuccessListener { USER.state = appStates.state  }
+                    .addOnSuccessListener { USERModel.state = appStates.state  }
                     .addOnFailureListener{ showToast(it.message.toString())}
             }
         }

@@ -1,8 +1,6 @@
 package com.diplom.pa.ui.fragments
 
 import android.app.Activity
-import android.content.Intent
-import android.view.View
 import androidx.fragment.app.Fragment
 import com.diplom.pa.MainActivity
 import com.diplom.pa.R
@@ -54,8 +52,8 @@ class EnterFragment : Fragment(R.layout.fragment_enter) {
                     CURRENT_ID = AUTH.currentUser?.uid.toString()
                     initUser{
                         val uid = AUTH.currentUser?.uid.toString()
-                        val username = USER.fullname
-                        val phone = USER.phone
+                        val username = USERModel.fullname
+                        val phone = USERModel.phone
                         val dateMap = mutableMapOf<String, Any>()
 
                         dateMap[CHILD_ID] = uid

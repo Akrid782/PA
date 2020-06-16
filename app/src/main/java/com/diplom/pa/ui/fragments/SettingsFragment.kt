@@ -21,16 +21,16 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
     }
 
     private fun initFields() {
-        if (USER.bio.isNotEmpty()) settings_about.text = USER.bio
-        settings_fullName.text = USER.fullname
-        settings_number_phone.text = USER.phone
-        settings_status.text = USER.state
-        settings_userName.text = USER.username
+        if (USERModel.bio.isNotEmpty()) settings_about.text = USERModel.bio
+        settings_fullName.text = USERModel.fullname
+        settings_number_phone.text = USERModel.phone
+        settings_status.text = USERModel.state
+        settings_userName.text = USERModel.username
         settings_btn_change_about.setOnClickListener { replaceFragment(ChangeBioFragment()) }
         settings_btn_change_userName.setOnClickListener { replaceFragment(ChangeUsernameFragment()) }
         settings_btn_change_number_phone.setOnClickListener { replaceFragment(ChangePhoneFragment()) }
         settings_btn_change_photo.setOnClickListener { changePhotoUser() }
-        settings_profile_image.downloadAndSetImage(USER.photoUrl)
+        settings_profile_image.downloadAndSetImage(USERModel.photoUrl)
     }
 
     private fun changePhotoUser() {
@@ -74,7 +74,7 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
                     putUrlToDatabase(it) {
                         settings_profile_image.downloadAndSetImage(it)
                         showToast("Данные обновленны")
-                        USER.photoUrl = it
+                        USERModel.photoUrl = it
                         APP_ACTIVITY.mAppDrawer.updateHeader()
                     }
                 }

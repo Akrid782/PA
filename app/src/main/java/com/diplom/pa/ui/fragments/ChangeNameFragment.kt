@@ -12,7 +12,7 @@ class ChangeNameFragment : BaseChangeFragment(R.layout.fragment_change_name) {
     }
 
     private fun initUsername() {
-        val fullNameList = USER.fullname.split(" ")
+        val fullNameList = USERModel.fullname.split(" ")
         settings_change_firstName.setText(fullNameList[0])
         if (fullNameList.size > 1) settings_change_lastName.setText(fullNameList[1])
     }
@@ -28,7 +28,7 @@ class ChangeNameFragment : BaseChangeFragment(R.layout.fragment_change_name) {
                 .setValue(fullName).addOnCompleteListener {
                     if (it.isSuccessful) {
                         showToast("Данные обновленны")
-                        USER.fullname = fullName
+                        USERModel.fullname = fullName
                         APP_ACTIVITY.mAppDrawer.updateHeader()
                         fragmentManager?.popBackStack()
                     }

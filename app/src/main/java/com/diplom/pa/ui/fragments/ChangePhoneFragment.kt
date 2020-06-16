@@ -8,7 +8,7 @@ class ChangePhoneFragment : BaseChangeFragment(R.layout.fragment_change_phone) {
 
     override fun onResume() {
         super.onResume()
-        settings_change_phone.setText(USER.phone)
+        settings_change_phone.setText(USERModel.phone)
     }
 
     override fun change() {
@@ -17,7 +17,7 @@ class ChangePhoneFragment : BaseChangeFragment(R.layout.fragment_change_phone) {
             .setValue(phone).addOnCompleteListener {
                 if (it.isSuccessful) {
                     showToast("Данные обновленны")
-                    USER.phone = phone
+                    USERModel.phone = phone
                     fragmentManager?.popBackStack()
                 }
             }
