@@ -8,7 +8,7 @@ import com.diplom.pa.R
 import com.diplom.pa.utility.APP_ACTIVITY
 import com.diplom.pa.utility.hideKeyboard
 
-open class BaseChangeFragment(layout: Int): Fragment(layout) {
+open class BaseChangeFragment(layout: Int) : Fragment(layout) {
 
     override fun onStart() {
         super.onStart()

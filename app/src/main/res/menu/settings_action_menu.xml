@@ -3,20 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:icon="@drawable/ic_more_vert_b"
         android:title=""
-        android:icon="@drawable/ic_more_vert_black_24dp"
         app:showAsAction="ifRoom">
         <menu>
             <item
                 android:id="@+id/settings_menu_change_name"
-                android:icon="@drawable/ic_create_black_24dp"
+                android:icon="@drawable/ic_create_b"
                 android:title="@string/settings_menu_change_name"
-                app:showAsAction="never"/>
+                app:showAsAction="never" />
             <item
                 android:id="@+id/settings_menu_exit"
-                android:icon="@drawable/ic_exit_to_app_black_24dp"
+                android:icon="@drawable/ic_exit_b"
                 android:title="@string/settings_menu_exit"
-                app:showAsAction="never"/>
+                app:showAsAction="never" />
         </menu>
     </item>
 

@@ -1,7 +1,9 @@
 package com.diplom.pa.ui.fragments
 
 import com.diplom.pa.R
-import com.diplom.pa.utility.*
+import com.diplom.pa.database.USERModel
+import com.diplom.pa.database.changeUsername
+import com.diplom.pa.utility.showToast
 import kotlinx.android.synthetic.main.fragment_change_username.*
 import java.util.*
 
@@ -19,37 +21,8 @@ class ChangeUsernameFragment : BaseChangeFragment(R.layout.fragment_change_usern
         if (mUsername.isEmpty()) {
             showToast("Поле пустное")
         } else {
-            changeUsername()
+            changeUsername(mUsername)
         }
-    }
-
-    private fun changeUsername() {
-        REF_DATABASE_ROOT.child(NODE_USERNAMES).child(mUsername).setValue(CURRENT_ID)
-            .addOnCompleteListener {
-                if (it.isSuccessful) {
-                    updateCurrentUsername()
-                }
-            }
-    }
-
-    private fun updateCurrentUsername() {
-        REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_ID).child(CHILD_USERNAME).setValue(mUsername)
-            .addOnCompleteListener {
-                if (it.isSuccessful) {
-                    showToast("Данные обновленны")
-                    deleteOldUsername()
-                }
-            }
-    }
-
-    private fun deleteOldUsername() {
-        REF_DATABASE_ROOT.child(NODE_USERNAMES).child(USERModel.username).removeValue()
-            .addOnCompleteListener {
-                if (it.isSuccessful) {
-                    USERModel.username = mUsername
-                    fragmentManager?.popBackStack()
-                }
-            }
     }
 
 }

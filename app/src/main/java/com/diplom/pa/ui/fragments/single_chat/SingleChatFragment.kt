@@ -3,10 +3,14 @@ package com.diplom.pa.ui.fragments.single_chat
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.diplom.pa.R
+import com.diplom.pa.database.*
 import com.diplom.pa.models.CommonModel
 import com.diplom.pa.models.UserModel
 import com.diplom.pa.ui.fragments.BaseFragment
-import com.diplom.pa.utility.*
+import com.diplom.pa.utility.APP_ACTIVITY
+import com.diplom.pa.utility.AppValueEventListener
+import com.diplom.pa.utility.downloadAndSetImage
+import com.diplom.pa.utility.showToast
 import com.google.firebase.database.DatabaseReference
 import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.fragment_single_chat.*
@@ -34,9 +38,7 @@ class SingleChatFragment(private val contact: CommonModel) :
     private fun initRecycleView() {
         mRecyclerView = chat_recycler_view
         mAdapter = SingleChatAdapter()
-        mRefMessages = REF_DATABASE_ROOT.child(NODE_MESSAGES)
-            .child(CURRENT_ID)
-            .child(contact.id)
+        mRefMessages = REF_DATABASE_ROOT.child(NODE_MESSAGES).child(CURRENT_ID).child(contact.id)
         mRecyclerView.adapter = mAdapter
         mMessagesListener = AppValueEventListener { dataSnapshot ->
             mListMessages = dataSnapshot.children.map { it.getCommonModel() }

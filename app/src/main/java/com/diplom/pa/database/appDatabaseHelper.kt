@@ -1,8 +1,11 @@
-package com.diplom.pa.utility
+package com.diplom.pa.database
 
 import android.net.Uri
 import com.diplom.pa.models.CommonModel
 import com.diplom.pa.models.UserModel
+import com.diplom.pa.utility.APP_ACTIVITY
+import com.diplom.pa.utility.AppValueEventListener
+import com.diplom.pa.utility.showToast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseReference
@@ -51,8 +54,7 @@ fun initFirebase() {
 }
 
 inline fun putUrlToDatabase(url: String, crossinline function: () -> Unit) {
-    REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_ID)
-        .child(CHILD_PHOTO_URL).setValue(url)
+    REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_ID).child(CHILD_PHOTO_URL).setValue(url)
         .addOnSuccessListener { function() }
         .addOnFailureListener { showToast(it.message.toString()) }
 }
@@ -82,22 +84,25 @@ inline fun initUser(crossinline function: () -> Unit) {
 
 fun updatePhonesToDatabase(arrayContacts: ArrayList<CommonModel>) {
     if (AUTH.currentUser != null) {
-        REF_DATABASE_ROOT.child(NODE_PHONES).addListenerForSingleValueEvent(AppValueEventListener {
-            it.children.forEach { snapshot ->
-                arrayContacts.forEach { contact ->
-                    if (snapshot.key == contact.phone) {
-                        REF_DATABASE_ROOT.child(NODE_PHONES_CONTACTS).child(CURRENT_ID)
-                            .child(snapshot.value.toString()).child(CHILD_ID)
-                            .setValue(snapshot.value.toString())
-                            .addOnFailureListener {}
-                        REF_DATABASE_ROOT.child(NODE_PHONES_CONTACTS).child(CURRENT_ID)
-                            .child(snapshot.value.toString()).child(CHILD_FULLNAME)
-                            .setValue(contact.fullname)
-                            .addOnFailureListener {}
+        REF_DATABASE_ROOT.child(NODE_PHONES).addListenerForSingleValueEvent(
+            AppValueEventListener {
+                it.children.forEach { snapshot ->
+                    arrayContacts.forEach { contact ->
+                        if (snapshot.key == contact.phone) {
+                            REF_DATABASE_ROOT.child(NODE_PHONES_CONTACTS).child(CURRENT_ID)
+                                .child(snapshot.value.toString())
+                                .child(CHILD_ID)
+                                .setValue(snapshot.value.toString())
+                                .addOnFailureListener {}
+                            REF_DATABASE_ROOT.child(NODE_PHONES_CONTACTS).child(CURRENT_ID)
+                                .child(snapshot.value.toString())
+                                .child(CHILD_FULLNAME)
+                                .setValue(contact.fullname)
+                                .addOnFailureListener {}
+                        }
                     }
                 }
-            }
-        })
+            })
     }
 }
 
@@ -122,8 +127,63 @@ fun sendMessage(message: String, receivingUserID: String, typeText: String, func
     mapDialog["$refDialogUser/$messageKey"] = mapMessage
     mapDialog["$refDialogReceivingUser/$messageKey"] = mapMessage
 
-    REF_DATABASE_ROOT
-        .updateChildren(mapDialog)
+    REF_DATABASE_ROOT.updateChildren(mapDialog)
         .addOnSuccessListener { function() }
         .addOnFailureListener { showToast(it.message.toString()) }
+}
+
+fun changeUsername(newUserName: String) {
+    REF_DATABASE_ROOT.child(NODE_USERNAMES).child(newUserName)
+        .setValue(CURRENT_ID)
+        .addOnSuccessListener { updateCurrentUsername(newUserName) }
+        .addOnFailureListener { showToast(it.message.toString()) }
+}
+
+fun updateCurrentUsername(newUserName: String) {
+    REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_ID).child(CHILD_USERNAME)
+        .setValue(newUserName)
+        .addOnSuccessListener {
+            showToast("Данные обновленны")
+            deleteOldUsername(newUserName)
+        }.addOnFailureListener { showToast(it.message.toString()) }
+}
+
+private fun deleteOldUsername(newUserName: String) {
+    REF_DATABASE_ROOT.child(NODE_USERNAMES).child(USERModel.username)
+        .removeValue()
+        .addOnSuccessListener {
+            USERModel.username = newUserName
+            APP_ACTIVITY.supportFragmentManager.popBackStack()
+        }.addOnFailureListener { showToast(it.message.toString()) }
+}
+
+fun setBioToDatabase(bio: String) {
+    REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_ID).child(CHILD_BIO)
+        .setValue(bio)
+        .addOnSuccessListener {
+            showToast("Данные обновленны")
+            USERModel.bio = bio
+            APP_ACTIVITY.supportFragmentManager.popBackStack()
+        }.addOnFailureListener { showToast(it.message.toString()) }
+}
+
+fun setFullNameToDatabase(fullName: String) {
+    REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_ID).child(CHILD_FULLNAME)
+        .setValue(fullName)
+        .addOnSuccessListener {
+            showToast("Данные обновленны")
+            USERModel.fullname = fullName
+            APP_ACTIVITY.mAppDrawer.updateHeader()
+            APP_ACTIVITY.supportFragmentManager.popBackStack()
+        }.addOnFailureListener { showToast(it.message.toString()) }
+}
+
+fun setPhoneToDatabase(phone: String) {
+    REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_ID).child(CHILD_PHOTO)
+        .setValue(phone)
+        .addOnSuccessListener {
+            showToast("Данные обновленны")
+            USERModel.phone = phone
+            APP_ACTIVITY.supportFragmentManager.popBackStack()
+        }.addOnFailureListener { showToast(it.message.toString()) }
 }

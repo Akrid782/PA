@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.EnterFragment">
+    tools:context=".ui.fragments.register.EnterFragment">
 
     <ImageView
         android:id="@+id/register_image_logo"
@@ -14,7 +14,7 @@
         android:layout_marginEnd="@dimen/margin_16dp"
         android:layout_marginBottom="@dimen/margin_64dp"
         android:contentDescription="@string/register_image_logo_description"
-        android:src="@drawable/logo_ksb_1"
+        android:src="@drawable/logo_ksb"
         app:layout_constraintBottom_toTopOf="@id/register_label_enter_email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -25,9 +25,9 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/margin_10dp"
         android:text="@string/register_label_enter_email"
+        android:textColor="@color/nero"
         android:textSize="@dimen/text_16ps"
         android:textStyle="bold"
-        android:textColor="@color/nero"
         app:layout_constraintBottom_toTopOf="@+id/register_text_enter_email_body"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -69,9 +69,9 @@
         android:layout_marginTop="@dimen/margin_32dp"
         android:layout_marginBottom="@dimen/margin_10dp"
         android:text="@string/register_label_enter_password"
+        android:textColor="@color/nero"
         android:textSize="@dimen/text_16ps"
         android:textStyle="bold"
-        android:textColor="@color/nero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/register_text_enter_email_body" />
@@ -113,7 +113,7 @@
         android:layout_marginStart="@dimen/margin_16dp"
         android:layout_marginTop="@dimen/margin_64dp"
         android:layout_marginEnd="@dimen/margin_16dp"
-        android:background="@drawable/btn"
+        android:background="@drawable/body_btn"
         android:text="@string/register_btn_enter"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"

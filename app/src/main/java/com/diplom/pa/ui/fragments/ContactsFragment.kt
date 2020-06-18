@@ -6,9 +6,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.diplom.pa.R
+import com.diplom.pa.database.*
 import com.diplom.pa.models.CommonModel
 import com.diplom.pa.ui.fragments.single_chat.SingleChatFragment
-import com.diplom.pa.utility.*
+import com.diplom.pa.utility.APP_ACTIVITY
+import com.diplom.pa.utility.AppValueEventListener
+import com.diplom.pa.utility.downloadAndSetImage
+import com.diplom.pa.utility.replaceFragment
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.database.DatabaseReference
@@ -23,7 +27,8 @@ class ContactsFragment : BaseFragment(R.layout.fragment_contacts) {
     private lateinit var mRefContacts: DatabaseReference
     private lateinit var mRefUsers: DatabaseReference
     private lateinit var mRefUsersListener: AppValueEventListener
-    private var mapListeners = hashMapOf<DatabaseReference, AppValueEventListener>()
+    private var mapListeners =
+        hashMapOf<DatabaseReference, AppValueEventListener>()
 
     override fun onResume() {
         super.onResume()
@@ -61,11 +66,9 @@ class ContactsFragment : BaseFragment(R.layout.fragment_contacts) {
                     } else holder.name.text = contact.fullname
                     holder.status.text = contact.state
                     holder.photo.downloadAndSetImage(contact.photoUrl)
-                    holder.itemView.setOnClickListener { replaceFragment(
-                        SingleChatFragment(
-                            model
-                        )
-                    ) }
+                    holder.itemView.setOnClickListener {
+                        replaceFragment(SingleChatFragment(model))
+                    }
                 }
 
                 mRefUsers.addValueEventListener(mRefUsersListener)

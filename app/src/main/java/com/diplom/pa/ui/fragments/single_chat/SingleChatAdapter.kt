@@ -8,8 +8,8 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.diplom.pa.R
+import com.diplom.pa.database.CURRENT_ID
 import com.diplom.pa.models.CommonModel
-import com.diplom.pa.utility.CURRENT_ID
 import com.diplom.pa.utility.asTime
 import kotlinx.android.synthetic.main.message_item.view.*
 
@@ -28,7 +28,8 @@ class SingleChatAdapter : RecyclerView.Adapter<SingleChatAdapter.SingleChatHolde
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SingleChatHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.message_item, parent, false)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.message_item, parent, false)
         return SingleChatHolder(view)
     }
 

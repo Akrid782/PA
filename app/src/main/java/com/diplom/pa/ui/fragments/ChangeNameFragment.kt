@@ -1,7 +1,9 @@
 package com.diplom.pa.ui.fragments
 
 import com.diplom.pa.R
-import com.diplom.pa.utility.*
+import com.diplom.pa.database.USERModel
+import com.diplom.pa.database.setFullNameToDatabase
+import com.diplom.pa.utility.showToast
 import kotlinx.android.synthetic.main.fragment_change_name.*
 
 class ChangeNameFragment : BaseChangeFragment(R.layout.fragment_change_name) {
@@ -24,17 +26,8 @@ class ChangeNameFragment : BaseChangeFragment(R.layout.fragment_change_name) {
             showToast("Имя не может быть пустым")
         } else {
             val fullName = "$firstName $lastName"
-            REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_ID).child(CHILD_FULLNAME)
-                .setValue(fullName).addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        showToast("Данные обновленны")
-                        USERModel.fullname = fullName
-                        APP_ACTIVITY.mAppDrawer.updateHeader()
-                        fragmentManager?.popBackStack()
-                    }
-                }
+            setFullNameToDatabase(fullName)
         }
-
     }
 
 }

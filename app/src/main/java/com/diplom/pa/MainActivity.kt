@@ -5,10 +5,13 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
-import com.diplom.pa.activity.RegisterActivity
+import com.diplom.pa.database.AUTH
+import com.diplom.pa.database.initFirebase
+import com.diplom.pa.database.initUser
 import com.diplom.pa.databinding.ActivityMainBinding
 import com.diplom.pa.ui.`object`.AppDrawer
-import com.diplom.pa.ui.fragments.WorkFragment
+import com.diplom.pa.ui.fragments.MainFragment
+import com.diplom.pa.ui.fragments.register.EnterFragment
 import com.diplom.pa.utility.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -27,9 +30,7 @@ class MainActivity : AppCompatActivity() {
         APP_ACTIVITY = this
         initFirebase()
         initUser {
-            CoroutineScope(Dispatchers.IO).launch {
-                initContacts()
-            }
+            CoroutineScope(Dispatchers.IO).launch { initContacts() }
             initFields()
             initFunc()
         }
@@ -42,8 +43,7 @@ class MainActivity : AppCompatActivity() {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (ContextCompat.checkSelfPermission(
-                APP_ACTIVITY,
-                READ_CONTACTS
+                APP_ACTIVITY, READ_CONTACTS
             ) == PackageManager.PERMISSION_GRANTED
         ) {
             initContacts()
@@ -66,12 +66,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initFunc() {
+        setSupportActionBar(mToolbar)
         if (AUTH.currentUser != null) {
-            setSupportActionBar(mToolbar)
             mAppDrawer.create()
-            replaceFragment(WorkFragment(), false)
+            replaceFragment(MainFragment(), false)
         } else {
-            replaceActivity(RegisterActivity())
+            APP_ACTIVITY.supportActionBar?.hide()
+            replaceFragment(EnterFragment(), false)
         }
     }
 }

@@ -68,7 +68,7 @@
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/settings_header_block" />
 
-    <!-- btn -->
+    <!-- body_btn -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/settings_btn_change_number_phone"
         style="@style/settingsButtons"
@@ -162,32 +162,32 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-<!--    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/settings_btn_change_photo"
-        android:layout_width="@dimen/settings_profile_image_width"
-        android:layout_height="@dimen/settings_profile_image_height"
-        android:layout_marginStart="@dimen/margin_16dp"
-        android:layout_marginEnd="@dimen/margin_16dp"
-        android:src="@drawable/ic_camera_white"
-        app:civ_circle_background_color="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="@+id/settings_header_block"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/settings_header_block" />-->
+    <!--    <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/settings_btn_change_photo"
+            android:layout_width="@dimen/settings_profile_image_width"
+            android:layout_height="@dimen/settings_profile_image_height"
+            android:layout_marginStart="@dimen/margin_16dp"
+            android:layout_marginEnd="@dimen/margin_16dp"
+            android:src="@drawable/ic_camera_w"
+            app:civ_circle_background_color="@color/colorAccent"
+            app:layout_constraintBottom_toBottomOf="@+id/settings_header_block"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/settings_header_block" />-->
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/settings_btn_change_photo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_16dp"
+        android:layout_marginEnd="@dimen/margin_16dp"
         android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/ic_camera_w"
         app:layout_constraintBottom_toBottomOf="@+id/settings_header_block"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/settings_header_block"
-        android:src="@drawable/ic_camera_white"
         tools:layout_editor_absoluteX="130dp"
-        tools:layout_editor_absoluteY="495dp"
-        android:layout_marginStart="@dimen/margin_16dp"
-        android:layout_marginEnd="@dimen/margin_16dp"
-        android:focusable="true" />
+        tools:layout_editor_absoluteY="495dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
