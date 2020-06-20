@@ -16,6 +16,7 @@ import com.mikepenz.materialdrawer.AccountHeader
 import com.mikepenz.materialdrawer.AccountHeaderBuilder
 import com.mikepenz.materialdrawer.Drawer
 import com.mikepenz.materialdrawer.DrawerBuilder
+import com.mikepenz.materialdrawer.holder.BadgeStyle
 import com.mikepenz.materialdrawer.model.DividerDrawerItem
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem
@@ -61,6 +62,7 @@ class AppDrawer() {
             .withActionBarDrawerToggle(true)
             .withSelectedItem(-1)
             .withAccountHeader(mHeader)
+            .withStickyFooter(R.layout.footer_drawer)
             .addDrawerItems(
                 PrimaryDrawerItem().withIdentifier(101)
                     .withIconTintingEnabled(true)
@@ -68,17 +70,22 @@ class AppDrawer() {
                     .withSelectable(false)
                     .withIcon(R.drawable.ic_work_r),
                 DividerDrawerItem(),
-                PrimaryDrawerItem().withIdentifier(103)
-                    .withIconTintingEnabled(true)
-                    .withName("Чат")
-                    .withSelectable(false)
-                    .withIcon(R.drawable.ic_chat_r),
-                DividerDrawerItem(),
                 PrimaryDrawerItem().withIdentifier(105)
                     .withIconTintingEnabled(true)
                     .withName("Замерочный лист")
                     .withSelectable(false)
                     .withIcon(R.drawable.ic_page_r),
+                DividerDrawerItem(),
+                PrimaryDrawerItem().withIdentifier(103)
+                    .withIconTintingEnabled(true)
+                    .withName("Чат")
+                    .withSelectable(false)
+                    .withBadge("19").withBadgeStyle(
+                        BadgeStyle()
+                            .withColorRes(R.color.alizarin)
+                            .withTextColorRes(R.color.white)
+                    )
+                    .withIcon(R.drawable.ic_chat_r),
                 DividerDrawerItem(),
                 PrimaryDrawerItem().withIdentifier(107)
                     .withIconTintingEnabled(true)
@@ -102,8 +109,7 @@ class AppDrawer() {
                     clickToItem(position)
                     return false
                 }
-            })
-            .build()
+            }).build()
     }
 
     private fun clickToItem(position: Int) {
