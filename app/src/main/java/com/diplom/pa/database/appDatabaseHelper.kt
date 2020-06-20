@@ -5,6 +5,7 @@ import com.diplom.pa.models.CommonModel
 import com.diplom.pa.models.UserModel
 import com.diplom.pa.utility.APP_ACTIVITY
 import com.diplom.pa.utility.AppValueEventListener
+import com.diplom.pa.utility.TYPE_MESSAGE_IMAGE
 import com.diplom.pa.utility.showToast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -30,6 +31,7 @@ const val NODE_PHONES = "phones"
 const val NODE_PHONES_CONTACTS = "phones_contacts"
 
 const val FOLDER_PROFILE_IMAGE = "profile_image"
+const val FOLDER_MESSAGES_IMAGE = "message_image"
 
 const val CHILD_ID = "id"
 const val CHILD_EMAIL = "email"
@@ -44,6 +46,7 @@ const val CHILD_TYPE = "type"
 const val CHILD_TEXT = "text"
 const val CHILD_FROM = "from"
 const val CHILD_TIMESTAMP = "timeStamp"
+const val CHILD_IMAGE_URL = "imageUrl"
 
 fun initFirebase() {
     AUTH = FirebaseAuth.getInstance()
@@ -187,4 +190,23 @@ fun setPhoneToDatabase(phone: String) {
             USERModel.phone = phone
             APP_ACTIVITY.supportFragmentManager.popBackStack()
         }.addOnFailureListener { showToast(it.message.toString()) }
+}
+
+fun sendMessageAsImage(receivingUserID: String, imageUrl: String, messageKey: String) {
+    val refDialogUser = "$NODE_MESSAGES/$CURRENT_ID/$receivingUserID"
+    val refDialogReceivingUser = "$NODE_MESSAGES/$receivingUserID/$CURRENT_ID"
+
+    val mapMessage = hashMapOf<String, Any>()
+    mapMessage[CHILD_FROM] = CURRENT_ID
+    mapMessage[CHILD_TYPE] = TYPE_MESSAGE_IMAGE
+    mapMessage[CHILD_ID] = messageKey
+    mapMessage[CHILD_TIMESTAMP] = ServerValue.TIMESTAMP
+    mapMessage[CHILD_IMAGE_URL] = imageUrl
+
+    val mapDialog = hashMapOf<String, Any>()
+    mapDialog["$refDialogUser/$messageKey"] = mapMessage
+    mapDialog["$refDialogReceivingUser/$messageKey"] = mapMessage
+
+    REF_DATABASE_ROOT.updateChildren(mapDialog)
+        .addOnFailureListener { showToast(it.message.toString()) }
 }

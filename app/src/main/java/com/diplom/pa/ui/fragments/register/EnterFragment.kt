@@ -4,6 +4,7 @@ import android.app.Activity
 import androidx.fragment.app.Fragment
 import com.diplom.pa.R
 import com.diplom.pa.database.*
+import com.diplom.pa.utility.AppValueEventListener
 import com.diplom.pa.utility.restartActivity
 import com.diplom.pa.utility.showToast
 import com.google.firebase.auth.FirebaseAuth
@@ -51,26 +52,32 @@ class EnterFragment : Fragment(R.layout.fragment_enter) {
                 if (task.isSuccessful) {
                     CURRENT_ID = AUTH.currentUser?.uid.toString()
                     initUser {
-                        val uid = AUTH.currentUser?.uid.toString()
-                        val username = USERModel.fullname
                         val phone = USERModel.phone
                         val dateMap = mutableMapOf<String, Any>()
 
-                        dateMap[CHILD_ID] = uid
+                        dateMap[CHILD_ID] = CURRENT_ID
                         dateMap[CHILD_EMAIL] = mEmail
-                        dateMap[CHILD_USERNAME] = username
 
-                        REF_DATABASE_ROOT.child(NODE_PHONES).child(phone)
-                            .setValue(uid)
-                            .addOnFailureListener {}
-                            .addOnSuccessListener {
-                                REF_DATABASE_ROOT.child(NODE_USERS).child(uid)
-                                    .updateChildren(dateMap)
+                        REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_ID)
+                            .addListenerForSingleValueEvent(AppValueEventListener {
+
+                                if (!it.hasChild(CHILD_USERNAME)) {
+                                    dateMap[CHILD_USERNAME] = CURRENT_ID
+                                }
+
+                                REF_DATABASE_ROOT.child(NODE_PHONES).child(phone)
+                                    .setValue(CURRENT_ID)
+                                    .addOnFailureListener {}
                                     .addOnSuccessListener {
-                                        showToast("Добро пожаловать")
-                                        restartActivity()
+                                        REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_ID)
+                                            .updateChildren(dateMap)
+                                            .addOnSuccessListener {
+                                                showToast("Добро пожаловать")
+                                                restartActivity()
+                                            }
                                     }
-                            }
+                            })
+
                     }
                 } else showToast(task.exception?.message.toString())
             }
