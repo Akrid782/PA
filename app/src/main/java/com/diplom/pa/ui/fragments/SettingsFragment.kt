@@ -8,8 +8,10 @@ import android.view.MenuItem
 import com.diplom.pa.R
 import com.diplom.pa.database.*
 import com.diplom.pa.utility.*
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
+import kotlinx.android.synthetic.main.bottom_sheet.*
 import kotlinx.android.synthetic.main.fragment_settings.*
 
 class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
@@ -31,6 +33,16 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
         settings_btn_change_userName.setOnClickListener { replaceFragment(ChangeUsernameFragment()) }
         settings_btn_change_number_phone.setOnClickListener { replaceFragment(ChangePhoneFragment()) }
         settings_btn_change_photo.setOnClickListener { changePhotoUser() }
+       // val bottomSheetBehavior = BottomSheetBehavior.from(bottom_sheet_layout)
+        //bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+        /*settings_btn_change_photo.setOnClickListener {
+            /*if (bottomSheetBehavior.state != BottomSheetBehavior.STATE_EXPANDED) {
+                bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+            } else {
+                bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+            }*/
+            changePhotoUser()
+        }*/
         settings_profile_image.downloadAndSetImage(USERModel.photoUrl)
     }
 

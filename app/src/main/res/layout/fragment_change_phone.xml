@@ -6,15 +6,34 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.ChangePhoneFragment">
 
-    <EditText
-        android:id="@+id/settings_change_phone"
-        android:layout_width="match_parent"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/settings_change_phone_body"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_16dp"
-        android:gravity="start|top"
-        android:inputType="phone"
+        android:layout_marginStart="@dimen/margin_16dp"
+        android:layout_marginEnd="@dimen/margin_16dp"
+        android:layout_marginTop="@dimen/margin_16dp"
+        app:cardCornerRadius="@dimen/radius_5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/body_text_edit">
+
+            <EditText
+                android:id="@+id/settings_change_phone"
+                style="@style/edit_text"
+                android:autofillHints="@string/register_hint_enter_email"
+                android:hint="Ваш номер телефона"
+                android:inputType="phone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

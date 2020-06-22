@@ -1,69 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/bottom_sheet_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/behavior"
     android:orientation="vertical"
     app:behavior_hideable="true"
     app:behavior_peekHeight="56dp"
-    android:background="@drawable/behavior"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
     <TextView
+        android:id="@+id/behavior_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="@dimen/padding_16dp"
+        android:text="@string/settings_title_behavior"
         android:textColor="@color/white"
+        android:textSize="18sp"
         android:textStyle="bold"
-        android:paddingTop="16dp"
-        android:paddingBottom="16dp"
-        android:paddingLeft="35dp"
-        android:fontFamily="@font/roboto_condensed_regular"
-        android:text="@string/title_camera"
-        android:textSize="20sp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/lineblack" />
+    <View
+        android:id="@+id/behavior_separator_item_1"
+        style="@style/behavior_separator"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/behavior_title" />
 
     <Button
         android:id="@+id/action_camera"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/eclipse"
-        android:text="@string/action_camera"
-        android:textColor="@color/white"
-        android:drawableStart="@drawable/ic_photo_white"
-        android:textAlignment="textStart"
-        android:fontFamily="@font/roboto_condensed_regular"
+        android:background="@drawable/ripple_effect_behavior"
+        android:drawableStart="@drawable/ic_camera_w"
         android:drawablePadding="16dp"
-        android:paddingStart="35dp"/>
+        android:maxHeight="56dp"
+        android:padding="@dimen/padding_16dp"
+        android:text="@string/settings_action_photo_behavior"
+        android:textAlignment="textStart"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/behavior_separator_item_1" />
 
     <Button
         android:id="@+id/select_camera"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/eclipse"
-        android:text="@string/select_camera"
-        android:textColor="@color/white"
-        android:drawableStart="@drawable/ic_photo_select_white"
-        android:textAlignment="textStart"
-        android:fontFamily="@font/roboto_condensed_regular"
+        android:background="@drawable/ripple_effect_behavior"
+        android:drawableStart="@drawable/ic_photo_w"
         android:drawablePadding="16dp"
-        android:paddingStart="35dp"/>
+        android:maxHeight="56dp"
+        android:padding="@dimen/padding_16dp"
+        android:text="@string/settings_select_photo_behavior"
+        android:textAlignment="textStart"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/action_camera" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/eclipse"
-        android:text="@string/delete_camera"
-        android:textColor="@color/alizarin"
-        android:fontFamily="@font/roboto_condensed_regular"
-        android:drawableStart="@drawable/ic_delete"
-        android:textAlignment="textStart"
+        android:background="@drawable/ripple_effect_behavior"
+        android:drawableStart="@drawable/ic_delete_r"
         android:drawablePadding="16dp"
-        android:paddingStart="35dp"/>
-</LinearLayout>
+        android:maxHeight="56dp"
+        android:padding="@dimen/padding_16dp"
+        android:text="@string/settings_delete_photo_behavior"
+        android:textAlignment="textStart"
+        android:textColor="@color/alizarin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/select_camera" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

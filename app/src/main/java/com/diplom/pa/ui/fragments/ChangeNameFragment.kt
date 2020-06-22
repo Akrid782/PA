@@ -5,12 +5,21 @@ import com.diplom.pa.database.USERModel
 import com.diplom.pa.database.setFullNameToDatabase
 import com.diplom.pa.utility.showToast
 import kotlinx.android.synthetic.main.fragment_change_name.*
+import kotlinx.android.synthetic.main.fragment_change_phone.*
 
 class ChangeNameFragment : BaseChangeFragment(R.layout.fragment_change_name) {
 
     override fun onResume() {
         super.onResume()
         initUsername()
+        settings_change_firstName.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) settings_change_firstName_body.elevation = 12F
+            else settings_change_firstName_body.elevation = 0F
+        }
+        settings_change_lastName.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) settings_change_lastName_body.elevation = 12F
+            else settings_change_lastName_body.elevation = 0F
+        }
     }
 
     private fun initUsername() {

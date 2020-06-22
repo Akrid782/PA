@@ -10,7 +10,7 @@
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:src="@drawable/ic_launcher_foreground"
-        app:civ_circle_background_color="@color/colorPrimary"
+        app:civ_circle_background_color="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

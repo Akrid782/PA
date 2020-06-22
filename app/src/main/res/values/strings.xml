@@ -17,6 +17,11 @@
     <string name="settings_menu_change_name">Изменить имя</string>
     <string name="settings_menu_exit">Выход</string>
 
+    <string name="settings_title_behavior">ВЫБРАТЬ ФОТО</string>
+    <string name="settings_action_photo_behavior">Сделать снимок</string>
+    <string name="settings_delete_photo_behavior">Удалить</string>
+    <string name="settings_select_photo_behavior">Загрузить из галереи</string>
+
     <!-- enter fragment -->
     <string name="register_image_logo_description">Логотип компании</string>
     <string name="register_label_enter_email">Логин</string>
